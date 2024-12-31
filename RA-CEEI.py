@@ -12,7 +12,8 @@ class AllocationResult:
 class ACEEI:
     def __init__(self, num_students: int, num_courses: int, capacities: np.ndarray, 
                  initial_budgets: np.ndarray, utilities: np.ndarray, 
-                 timetable: np.ndarray, step_size: float = 0.1, epsilon: float = 1.0): #can change epsilon here as per requirement(budget perturbation limit)
+                 timetable: np.ndarray, step_size: float = 0.1, epsilon: float = 1.0): #can change epsilon here as per requirement(budget perturbation limit) 
+                     #step size is analogous to delta (can increase/decrease to observe algorithm behaviour and time)
         self.n = num_students
         self.m = num_courses
         self.capacities = capacities
