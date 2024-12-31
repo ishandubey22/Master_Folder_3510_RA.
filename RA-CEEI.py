@@ -1,7 +1,7 @@
-import time
-import numpy as np
+import time #for runtime
+import numpy as np #for numerical calculations
 import cvxpy as cp #this is the library we use for solving the integer linear program
-from dataclasses import dataclass
+from dataclasses import dataclass #data containers for allocation results
 from typing import List, Tuple
 @dataclass
 class AllocationResult:
@@ -35,7 +35,7 @@ class ACEEI:
         return np.sum(error)
 
     def solve_student_allocation(self, student_idx: int, prices: np.ndarray, budget: float) -> AllocationResult:
-        x = cp.Variable(self.m, boolean=True)  # binary variable for course selection
+        x = cp.Variable(self.m, boolean=True)  # binary variable for course selection (either 0 or 1)
         utility = cp.sum(cp.multiply(self.utilities[student_idx], x))
         # constraints
         constraints = [
@@ -103,12 +103,12 @@ class ACEEI:
             prices += self.delta * (total_demand - self.capacities)
             prices = np.maximum(prices, 0)  #sanity check, non-negative price. 
         return prices, budgets, allocations
-# test case with 10 students and 5 courses
+# test case with 10 students and 5 courses and 9 seats
 if __name__ == "__main__":
     num_students = 10
     num_courses = 5
     capacities = np.array([2, 2, 2, 2, 1])  
-    initial_budgets = np.full(num_students, 100)  # All students start with equal budget - 100.
+    initial_budgets = np.full(num_students, 100)  # all students start with equal budget - 100.
     #preferences (utility scores) of each course for each student.
     utilities = np.array([
         [8, 2, 5, 1, 4],
@@ -139,7 +139,7 @@ if __name__ == "__main__":
         step_size=0.1,
         epsilon=1.0
     )
-    # execution time, can be commented out if not needed. for diagnostic purposes.
+    # execution time, can be commented out with a # if not needed. for diagnostic purposes.
     start_time = time.time()
     final_prices, final_budgets, final_allocations = solver.run()
     end_time = time.time()
