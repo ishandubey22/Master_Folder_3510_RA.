@@ -3,4 +3,4 @@
 2. RA-CEEI.py contains a simplified implementation of the algorithm. a. Specifically, the implementation does not account for EF-TB. Saves on computational resources. b. All other features of the RA-CEEI algorithm are implemented as is. c. We have constructed a test case already, which can be modified to observe the algorithm's behaviour under different conditions. d. Limited iterations to 500 to not let the algorithm keep on running indefinitely (as ILP is NP-hard). We can increase the limit based on computational powers of our system.
 3. (Research Form (Responses).xlsx) - The Excel Sheet with raw data for my survey's responses, along with a few calculations/statistics also present.
 4. Requires Python 3.7 or higher due to the dataclass module. Also ensure libraries numpy, time and cvxpy are installed.
-5. conda install -c conda-forge coincbc for CBC solver used in the program for ILP.
+5. conda install -c conda-forge coincbc for CBC solver used in the program for ILP. Alternatively -pip install cvxpy [cbc]. Imperative to install CBC solver otherwise the algorithm will not work.
